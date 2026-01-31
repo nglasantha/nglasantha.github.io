@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lasantha Nagoda - Personal Profile</title>
+    <meta name="description"
+        content="Personal profile of Lasantha Nagoda - Exploring the intersection of Politics, Society, AI, and Technology.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">Lasantha Nagoda.</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#interests">Interests</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-image-container">
+                    <img src="profile.jpg" alt="Lasantha Nagoda" class="hero-image">
+                </div>
+                <h1 class="hero-title">Lasantha Nagoda</h1>
+                <p class="hero-subtitle">Bridging the gap between <span class="gradient-text">Politics</span>, <span
+                        class="gradient-text">Society</span>, and <span class="gradient-text">Technology</span>.</p>
+                <div class="hero-cta">
+                    <a href="#interests" class="btn primary">Explore My Perspectives</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <p>
+                        I began my career in 2008, and over 17 years in software engineering and architecture, I’ve
+                        learned that true innovation comes from balancing technology with purpose.
+                    </p>
+                    <p>
+                        I’m deeply passionate about <strong>Artificial Intelligence</strong> and <strong>Large Language
+                            Models (LLMs)</strong>, exploring not only how they work technically, but also how they
+                        transform our social, economic, and philosophical landscape.
+                    </p>
+                    <p>
+                        My background covers the full software lifecycle, from design and architecture to mentoring
+                        teams and delivering enterprise systems. I enjoy simplifying complexity, building reliable
+                        solutions, and helping teams grow through collaboration and curiosity.
+                    </p>
+                    <p>
+                        Today, my focus is on using AI and modern software practices to create meaningful impact,
+                        keeping technology simple, ethical, and human-centered.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="interests" class="section interests">
+            <div class="container">
+                <h2 class="section-title">Core Interests</h2>
+                <div class="grid">
+                    <div class="card" data-category="politics">
+                        <div class="card-icon">🗳️</div>
+                        <h3>Politics</h3>
+                        <p>Analyzing policy, governance, and the systems that shape our societies.</p>
+                    </div>
+                    <div class="card" data-category="ai">
+                        <div class="card-icon">🤖</div>
+                        <h3>Artificial Intelligence</h3>
+                        <p>Exploring the potential of LLMs, agents, and the future of work.</p>
+                    </div>
+                    <div class="card" data-category="tech">
+                        <div class="card-icon">💻</div>
+                        <h3>Technology</h3>
+                        <p>Building the future with code, innovation, and digital transformation.</p>
+                    </div>
+                    <div class="card" data-category="social">
+                        <div class="card-icon">🤝</div>
+                        <h3>Social</h3>
+                        <p>Advocating for equity, community building, and positive social impact.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="insights" class="section insights">
+            <div class="container">
+                <h2 class="section-title">Insights & Articles</h2>
+                <div id="articles-grid" class="grid">
+                    <!-- Articles will be loaded here dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact">
+            <div class="container">
+                <h2 class="section-title">Get in Touch</h2>
+                <p>Always open to interesting conversations and collaborations.</p>
+                <div class="social-links">
+                    <a href="https://github.com/lasantha" target="_blank" class="social-link">GitHub</a>
+                    <a href="https://www.linkedin.com/in/nglasantha/" target="_blank" class="social-link">LinkedIn</a>
+                    <a href="https://www.facebook.com/aitsunami" target="_blank" class="social-link">AI Tsunami (FB)</a>
+                    <a href="mailto:contact@lasantha.dev" class="social-link">Email</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Lasantha Nagoda. All rights reserved.</p>
+    </footer>
+
+    <div id="article-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="articles.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
