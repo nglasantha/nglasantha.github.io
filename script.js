@@ -49,70 +49,66 @@ document.addEventListener('DOMContentLoaded', () => {
     const simpleObserver = new IntersectionObserver(handleAnimation, observerOptions);
     fadeElements.forEach(el => simpleObserver.observe(el));
 
-    // Blog Functionality
+    // Blog Functionality (Preview on Home)
     const articlesGrid = document.getElementById('articles-grid');
-    const modal = document.getElementById('article-modal');
-    const modalBody = document.getElementById('modal-body');
-    const closeModal = document.querySelector('.close-modal');
 
-    // Render Articles
-    if (articlesGrid && typeof blogArticles !== 'undefined') {
-        blogArticles.forEach(article => {
-            const card = document.createElement('div');
-            card.className = 'article-card';
-            card.innerHTML = `
-                <div>
-                    <span class="article-category">${article.category}</span>
-                    <h3 class="article-title">${article.title}</h3>
-                    <span class="article-date">${article.date}</span>
-                    <p class="article-summary">${article.summary}</p>
-                </div>
-                <div class="read-more">Read Article <span>&rarr;</span></div>
-            `;
+    // Fetch and Render Articles
+    if (articlesGrid) {
+        fetch('articles.json')
+            .then(response => response.json())
+            .then(articles => {
+                // Show only top 3 articles on home page
+                const previewArticles = articles.slice(0, 3);
 
-            card.addEventListener('click', () => openModal(article));
-            articlesGrid.appendChild(card);
+                // Feature the latest article in Hero
+                const heroFeatured = document.getElementById('hero-featured-article');
+                if (heroFeatured && articles.length > 0) {
+                    const latest = articles[0];
+                    heroFeatured.classList.remove('hidden');
+                    heroFeatured.innerHTML = `
+                        <div class="featured-pill" onclick="window.location.href='article.html?id=${latest.file}'">
+                            <span class="featured-tag">New Insight</span>
+                            <div class="featured-content">
+                                <h4>${latest.title}</h4>
+                                <span>Read 2 min &rarr;</span>
+                            </div>
+                        </div>
+                    `;
+                }
 
-            // Observe new card for animation
-            simpleObserver.observe(card);
-        });
+                if (previewArticles.length === 0) {
+                    articlesGrid.innerHTML = '<p style="color:var(--text-secondary)">No articles found.</p>';
+                    return;
+                }
+
+                previewArticles.forEach(article => {
+                    const card = document.createElement('div');
+                    card.className = 'article-card';
+                    card.innerHTML = `
+                        <div>
+                            <span class="article-category">${article.category}</span>
+                            <h3 class="article-title">${article.title}</h3>
+                            <span class="article-date">${article.date}</span>
+                            <p class="article-summary">${article.summary}</p>
+                        </div>
+                        <div class="read-more">Read Article <span>&rarr;</span></div>
+                    `;
+
+                    // Click navigates to the article page
+                    card.addEventListener('click', () => {
+                        window.location.href = `article.html?id=${article.file}`;
+                    });
+
+                    articlesGrid.appendChild(card);
+
+                    // Observe new card for animation
+                    simpleObserver.observe(card);
+                });
+            })
+            .catch(err => {
+                console.error('Failed to load articles:', err);
+                articlesGrid.innerHTML = '<p style="color:var(--text-secondary)">Loading insights...</p>';
+            });
     }
-
-    // Modal Functions
-    function openModal(article) {
-        modalBody.innerHTML = `
-            <div class="modal-meta">
-                <span>${article.date}</span> | <span>${article.category}</span>
-            </div>
-            <h2>${article.title}</h2>
-            <div class="article-content">
-                ${article.content}
-            </div>
-        `;
-        modal.classList.add('show');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
-    }
-
-    function closeModalFunc() {
-        modal.classList.remove('show');
-        document.body.style.overflow = 'auto'; // Restore scrolling
-    }
-
-    if (closeModal) {
-        closeModal.addEventListener('click', closeModalFunc);
-    }
-
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModalFunc();
-        }
-    });
-
-    // Escape key to close modal
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('show')) {
-            closeModalFunc();
-        }
-    });
 
 });

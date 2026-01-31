@@ -148,6 +148,65 @@ a {
     line-height: 1.1;
 }
 
+.hero-featured {
+    margin: 1.5rem 0;
+    width: 100%;
+    max-width: 500px;
+}
+
+.hero-featured.hidden {
+    display: none;
+}
+
+.featured-pill {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: left;
+}
+
+.featured-pill:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+.featured-tag {
+    background: var(--accent-color);
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.featured-content h4 {
+    font-size: 1rem;
+    margin: 0;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.featured-content span {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.featured-arrow {
+    margin-left: auto;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+}
+
 /* Insights Section */
 .article-card {
     background: var(--card-bg);
@@ -205,98 +264,6 @@ a {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-}
-
-/* Modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.modal.show {
-    display: block;
-    opacity: 1;
-}
-
-.modal-content {
-    background-color: var(--bg-color);
-    margin: 5% auto;
-    padding: 3rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    width: 90%;
-    max-width: 800px;
-    border-radius: 16px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    position: relative;
-    max-height: 90vh;
-    overflow-y: auto;
-    transform: translateY(20px);
-    transition: transform 0.3s ease;
-}
-
-.modal.show .modal-content {
-    transform: translateY(0);
-}
-
-.close-modal {
-    color: var(--text-secondary);
-    float: right;
-    font-size: 2rem;
-    font-weight: bold;
-    cursor: pointer;
-    line-height: 1;
-    transition: var(--transition);
-}
-
-.close-modal:hover {
-    color: var(--text-primary);
-}
-
-#modal-body h2 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-primary);
-}
-
-.modal-meta {
-    margin-bottom: 2rem;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-#modal-body h3 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-    font-size: 1.5rem;
-}
-
-#modal-body p {
-    margin-bottom: 1rem;
-    color: var(--text-secondary);
-    font-size: 1.1rem;
-    line-height: 1.8;
-}
-
-#modal-body ul {
-    margin-bottom: 1.5rem;
-    padding-left: 1.5rem;
-    color: var(--text-secondary);
-}
-
-#modal-body li {
-    margin-bottom: 0.5rem;
 }
 
 /* Table Styles for Article */

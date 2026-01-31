@@ -1,0 +1,31 @@
+name: Update Blog Index
+
+on:
+  push:
+    paths:
+      - 'articles/*.md'
+      - '.github/scripts/generate_articles.js'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+        
+    - name: Generate articles.json
+      run: node .github/scripts/generate_articles.js
+      
+    - name: Commit and Push changes
+      run: |
+        git config --global user.name 'GitHub Action'
+        git config --global user.email 'action@github.com'
+        git add articles.json
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Update blog index" && git push)

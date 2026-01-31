@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Lasantha Nagoda</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">Lasantha Nagoda.</a>
+            <ul class="nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <h1 class="section-title">Insights & Articles</h1>
+                <div id="blog-grid" class="grid">
+                    <!-- Articles will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Lasantha Nagoda. All rights reserved.</p>
+    </footer>
+
+    <script>
+        async function loadArticles() {
+            try {
+                const response = await fetch('articles.json');
+                const articles = await response.json();
+                const grid = document.getElementById('blog-grid');
+
+                articles.forEach(article => {
+                    const card = document.createElement('div');
+                    card.className = 'article-card';
+                    card.innerHTML = `
+                        <div>
+                            <span class="article-category">${article.category || 'Article'}</span>
+                            <h3 class="article-title">${article.title}</h3>
+                            <span class="article-date">${article.date}</span>
+                            <p class="article-summary">${article.summary}</p>
+                        </div>
+                        <div class="read-more">Read Article <span>&rarr;</span></div>
+                    `;
+                    card.onclick = () => window.location.href = `article.html?id=${article.file}`;
+                    grid.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Error loading articles:', error);
+                document.getElementById('blog-grid').innerHTML = '<p style="color:white;">Failed to load articles.</p>';
+            }
+        }
+        loadArticles();
+    </script>
+</body>
+
+</html>
