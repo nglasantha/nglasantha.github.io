@@ -28,4 +28,4 @@ jobs:
         git config --global user.name 'GitHub Action'
         git config --global user.email 'action@github.com'
         git add articles.json
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Update blog index" && git push)
+        git diff --quiet && git diff --staged --quiet || (git pull --rebase origin main && git commit -m "Update blog index" && git push)
